@@ -5,11 +5,21 @@ import tarfile
 import zipfile
 
 
+ORIGINAL_USERPROFILE = os.environ.get("USERPROFILE")
 PROJECT_DIR = Path(__file__).resolve().parent
 LOCAL_RUNTIME_HOME = PROJECT_DIR / ".runtime-home"
 
-
 LOCAL_RUNTIME_HOME.mkdir(exist_ok=True)
+
+if ORIGINAL_USERPROFILE:
+    orig_flet = Path(ORIGINAL_USERPROFILE) / ".flet"
+    dest_flet = LOCAL_RUNTIME_HOME / ".flet"
+    if orig_flet.exists() and not dest_flet.exists():
+        try:
+            shutil.copytree(orig_flet, dest_flet)
+        except Exception:
+            pass
+
 os.environ["USERPROFILE"] = str(LOCAL_RUNTIME_HOME)
 os.environ["HOME"] = str(LOCAL_RUNTIME_HOME)
 

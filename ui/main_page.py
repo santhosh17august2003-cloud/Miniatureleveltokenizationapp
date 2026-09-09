@@ -477,12 +477,7 @@ def build_main_page(page: ft.Page) -> None:
                         weight=ft.FontWeight.W_600,
                         text_align=ft.TextAlign.CENTER,
                     ),
-                    ft.Row(
-                        alignment=ft.MainAxisAlignment.CENTER,
-                        wrap=True,
-                        spacing=12,
-                        controls=token_boxes,
-                    ),
+                    token_boxes,
                 ],
             ),
         )

@@ -7,3 +7,7 @@ env/
 .flet/
 .cache/
 .runtime-home/
+*.lnk
+dist/
+build/
+*.spec
